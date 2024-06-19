@@ -12,7 +12,7 @@ These are aliases for <code>colcon build --symlink-install</code> and <code>sour
 
 ### Launch Rviz2
 ```
-rviz2
+rviz2 -d ./src/decaf/config/main.rviz
 ```
 
 ### Launch Simulation in Gazebo

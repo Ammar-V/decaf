@@ -29,3 +29,13 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 ros2 launch decaf rsp.launch.py use_sim_time:=true
 ```
+
+### View Image Topics
+```
+ros2 run rqt_image_view rqt_image_view
+```
+
+### Republish Images (compressed -> raw)
+```
+ros2 run image_transport republish compressed raw --ros-args -r in/compressed:=/camera/image_raw/compressed -r out:=/camera/image_raw/uncompressed
+``

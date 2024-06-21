@@ -58,3 +58,50 @@ With ros2_control controllers as input
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped
 ```
+
+## SLAM Commands (with SLAM Toolbox)
+
+The following is only needed to be done once (it's already in the repo so don't need to run it). It copies over the config file from the package to a local directory, making it easier to edit.
+```
+cp /opt/ros/humble/share/slam_toolbox/config/mapper_params_online_async.yaml ~/decaf_ws/src/decaf/config/
+```
+
+### Run SLAM
+```
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/decaf/config/mapper_params_online_async.yaml use_sim_time:=true
+```
+The `online` means that it is using live data and `async` refers to the fact that it will use the latest perception data.
+
+In `mapper_params_online_async.yaml`:
+- `mode: map` will generate a map live and localize within it
+- `mode: localization` will localize within a given map
+  - Must set `map_file_name: /home/ammarvora/decaf_ws/<seralized_map_name>`
+
+### Run Adaptive Monte Carlo Localization (AMCL) with a saved map
+
+1. Launch Gazebo and Rviz2
+    - Set the fixed frame to `map` by force
+    - Set the map's durability policy to `volatile`
+
+2. Run the map_server to publish the saved map
+```
+ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=/home/ammarvora/decaf_ws/my_map_save.yaml -p use_sim_time:=true
+```
+3. Run the lifecycle bringup for map_server
+```
+ros2 run nav2_util lifecycle_bringup map_server
+```
+This will publish the map and it should show up in Rviz2
+
+4. Run AMCL
+```
+ros2 run nav2_amcl amcl --ros-args -p use_sim_time:=true
+```
+
+5. Run the lifecycle bringup for AMCL
+```
+ros2 run nav2_util lifecycle_bringup amcl
+```
+
+6. Set a 2D Pose Estimate in Rviz2
+

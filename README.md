@@ -79,29 +79,29 @@ In `mapper_params_online_async.yaml`:
 
 ### Run Adaptive Monte Carlo Localization (AMCL) with a saved map
 
-1. Launch Gazebo and Rviz2
+#### 1. Launch Gazebo and Rviz2
     - Set the fixed frame to `map` by force
     - Set the map's durability policy to `volatile`
 
-2. Run the map_server to publish the saved map
+#### 2. Run the map_server to publish the saved map
 ```
 ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=/home/ammarvora/decaf_ws/my_map_save.yaml -p use_sim_time:=true
 ```
-3. Run the lifecycle bringup for map_server
+#### 3. Run the lifecycle bringup for map_server
 ```
 ros2 run nav2_util lifecycle_bringup map_server
 ```
 This will publish the map and it should show up in Rviz2
 
-4. Run AMCL
+#### 4. Run AMCL
 ```
 ros2 run nav2_amcl amcl --ros-args -p use_sim_time:=true
 ```
 
-5. Run the lifecycle bringup for AMCL
+#### 5. Run the lifecycle bringup for AMCL
 ```
 ros2 run nav2_util lifecycle_bringup amcl
 ```
 
-6. Set a 2D Pose Estimate in Rviz2
+#### 6. Set a 2D Pose Estimate in Rviz2
 

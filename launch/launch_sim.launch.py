@@ -25,6 +25,18 @@ def generate_launch_description():
         )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': use_ros2_control}.items()
     )
 
+    # Launch the twist_mux node
+    twist_mux_params = os.path.join(get_package_share_directory(package_name), 'config', 'twist_mux.yaml')
+    twist_out_topic = '/diff_cont/cmd_vel_unstamped' if use_ros2_control else '/cmd_vel'
+    twist_mux = Node(
+        package='twist_mux',
+        executable='twist_mux',
+        parameters=[twist_mux_params, {'use_sim_time': True}],
+        remappings=[('/cmd_vel_out', twist_out_topic)],
+        # TODO: If not using ros2_control, teleop_twist_keyboard will use /cmd_vel as output because gazebo_control expects
+        # that as input. But, nav2 also uses that as output, so that might be a problem because nav2 and telop_twist_keyboard will clash!!
+    )
+
     # Include the Gazebo launch file, provided by the gaebo ros_package
     gazebo_params_file = os.path.join(get_package_share_directory(package_name), 'config', 'gazebo_params.yaml')
     gazebo = IncludeLaunchDescription(
@@ -60,6 +72,7 @@ def generate_launch_description():
             description='Use ros2_control if true'),
         
         rsp,
+        twist_mux,
         gazebo,
         spawn_entity,
         diff_drive_spawner,

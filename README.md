@@ -56,7 +56,7 @@ ros2 run controller_manager spawner joint_broad
 ### Launch Teleop Twist Keyboard 
 With ros2_control controllers as input
 ```
-ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_cont/cmd_vel_unstamped
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/cmd_vel_teleop
 ```
 
 ## SLAM Commands (with SLAM Toolbox)
@@ -105,3 +105,20 @@ ros2 run nav2_util lifecycle_bringup amcl
 
 #### 6. Set a 2D Pose Estimate in Rviz2
 
+
+#### Alternative to steps 3-5
+```
+ros2 launch decaf localization_launch.py map:=./my_map_save.yaml use_sim_time:=true 
+```
+
+## Nav2 Commands
+
+Launch mapping before launching nav2.
+```
+ros2 launch decaf navigation_launch.py use_sim_time:=true
+```
+
+### Running twist_mux (not necessary, launch_sim.launch.py takes care)
+```
+ros2 run twist_mux twist_mux --ros-args --params-file ./src/decaf/config/twist_mux.yaml -r cmd_vel_out:=diff_cont/cmd_vel_unstamped
+```

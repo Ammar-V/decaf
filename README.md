@@ -12,12 +12,12 @@ These are aliases for <code>colcon build --symlink-install</code> and <code>sour
 
 ### Launch Rviz2
 ```
-rviz2 -d ./src/decaf/config/main.rviz
+rviz2 -d ./src/decaf/description/rviz/main.rviz
 ```
 
 ### Launch Simulation in Gazebo
 ```
-ros2 launch decaf launch_sim.launch.py world:=./src/decaf/worlds/obstacles.world
+ros2 launch description launch_sim.launch.py world:=./src/decaf/worlds/obstacles.world
 ```
 
 ### Launch Teleop Twist Keyboard
@@ -27,7 +27,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 ### Launch Robot State Publisher (in simulation)
 ```
-ros2 launch decaf rsp.launch.py use_sim_time:=true
+ros2 launch description rsp.launch.py use_sim_time:=true
 ```
 
 ### View Image Topics
@@ -63,12 +63,12 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/cm
 
 The following is only needed to be done once (it's already in the repo so don't need to run it). It copies over the config file from the package to a local directory, making it easier to edit.
 ```
-cp /opt/ros/humble/share/slam_toolbox/config/mapper_params_online_async.yaml ~/decaf_ws/src/decaf/config/
+cp /opt/ros/humble/share/slam_toolbox/config/mapper_params_online_async.yaml ~/decaf_ws/src/decaf/description/config/
 ```
 
 ### Run SLAM
 ```
-ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/decaf/config/mapper_params_online_async.yaml use_sim_time:=true
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/decaf/description/config/mapper_params_online_async.yaml use_sim_time:=true
 ```
 The `online` means that it is using live data and `async` refers to the fact that it will use the latest perception data.
 
@@ -108,17 +108,17 @@ ros2 run nav2_util lifecycle_bringup amcl
 
 #### Alternative to steps 3-5
 ```
-ros2 launch decaf localization_launch.py map:=./my_map_save.yaml use_sim_time:=true 
+ros2 launch description localization_launch.py map:=./my_map_save.yaml use_sim_time:=true 
 ```
 
 ## Nav2 Commands
 
 Launch mapping before launching nav2.
 ```
-ros2 launch decaf navigation_launch.py use_sim_time:=true
+ros2 launch description navigation_launch.py use_sim_time:=true
 ```
 
 ### Running twist_mux (not necessary, launch_sim.launch.py takes care)
 ```
-ros2 run twist_mux twist_mux --ros-args --params-file ./src/decaf/config/twist_mux.yaml -r cmd_vel_out:=diff_cont/cmd_vel_unstamped
+ros2 run twist_mux twist_mux --ros-args --params-file ./src/decaf/decription/config/twist_mux.yaml -r cmd_vel_out:=diff_cont/cmd_vel_unstamped
 ```

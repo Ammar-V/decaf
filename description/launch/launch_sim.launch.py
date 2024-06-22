@@ -14,7 +14,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description(): 
 
-    package_name = "decaf"
+    package_name = "description"
 
     use_ros2_control = LaunchConfiguration('use_ros2_control')
 

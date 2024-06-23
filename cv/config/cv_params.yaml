@@ -1,0 +1,8 @@
+follow_object:
+  ros__parameters:
+    rcv_timeout_secs: 2.0
+    angular_chase_multiplier: 0.7
+    forward_chase_speed: 0.05
+    search_angular_speed: 0.25
+    max_size_thresh: 0.05
+    filter_value: 0.9

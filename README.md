@@ -122,3 +122,20 @@ ros2 launch description navigation_launch.py use_sim_time:=true
 ```
 ros2 run twist_mux twist_mux --ros-args --params-file ./src/decaf/decription/config/twist_mux.yaml -r cmd_vel_out:=diff_cont/cmd_vel_unstamped
 ```
+
+## Tracker Commands
+
+### Launch file
+```
+ros2 launch cv tracker.launch.py
+```
+
+### Run Object Detection Node
+```
+ros2 run cv detect_object --ros-args -r /image_in:=/camera/image_raw 
+```
+
+### Run Object Following Node
+```
+ros2 run cv follow_object --ros-args --params-file ./src/decaf/cv/config/cv_params.yaml 
+```

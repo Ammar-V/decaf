@@ -1,0 +1,19 @@
+    material MyGroundPlane/Image
+    {
+      technique
+      {
+        pass
+        {
+          ambient 1.0 1.0 1.0 1.0
+          diffuse 1.0 1.0 1.0 1.0
+          specular 1.0 1.0 1.0 1.0 0.5
+
+          texture_unit
+          {
+            texture obstacles_mask_upscaled.png
+            filtering trilinear
+          }
+          scale 18 20
+        }
+      }
+    }

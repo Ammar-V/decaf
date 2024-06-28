@@ -27,6 +27,7 @@ setup(
         'console_scripts': [
             'detect_object = cv.detect_object:main',
             'follow_object = cv.follow_object:main',
+            'detect_lanes = cv.detect_lanes:main',
         ],
     },
 )

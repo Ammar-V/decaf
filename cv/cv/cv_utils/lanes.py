@@ -3,6 +3,36 @@ import numpy as np
 
 root_path = '/home/ammarvora/decaf_ws/src/decaf/cv/cv_utils'
 
+def project_lanes(mask, depth, camera_info):
+    '''
+        input: mask, depth, both in the shape of an image
+        input: camera_info contains fx, fy, cx, cy
+        output: table of 3D points
+    '''
+
+    lanes_locs = np.argwhere(mask > 0).astype(tuple)
+
+    # Transpose is needed to make the next line work
+    lanes_locs_idxs = np.array(lanes_locs).T.tolist() # [[list of all y coordinates] [list of all x coordinates]]
+    
+    lanes_dists = depth[tuple(lanes_locs_idxs)]
+    
+    assert lanes_locs.shape[0] == lanes_dists.shape[0], "Must have same number of rows"
+
+    x_locs = np.expand_dims(lanes_locs[:, 1], axis=1)
+    y_locs = np.expand_dims(lanes_locs[:, 0], axis=1)
+    lanes_dists = np.expand_dims(lanes_dists, axis=1)
+
+                            
+    lanes_pc = np.concatenate([x_locs, y_locs, lanes_dists], axis=-1) # in image frame
+
+    # Project x y pixel coordinates to distance coordinates
+    lanes_pc[:, 0] = (lanes_pc[:, 0] - camera_info['cx']) * lanes_pc[:, 2] / camera_info['fx'] # (x - cx) * z / fx
+    lanes_pc[:, 1] = (lanes_pc[:, 1] - camera_info['cy']) * lanes_pc[:, 2] / camera_info['fy'] # (y - cy) * z / fy
+    
+    return lanes_pc
+
+
 def find_barrels(img):
     # Convert the image to HSV color space
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)

@@ -33,7 +33,7 @@
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>360</samples>
+                        <samples>362</samples>
                         <resolution>1</resolution>
                         <min_angle>-${pi/2}</min_angle>
                         <max_angle>${pi/2}</max_angle>

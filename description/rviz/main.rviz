@@ -27,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -72,8 +72,6 @@ Visualization Manager:
           Value: true
         left_wheel:
           Value: true
-        map:
-          Value: true
         odom:
           Value: true
         right_wheel:
@@ -84,8 +82,6 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        map:
-          {}
         odom:
           base_link:
             base_footprint:
@@ -392,7 +388,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -475,5 +471,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1109
-  X: 529
+  X: 69
   Y: -32

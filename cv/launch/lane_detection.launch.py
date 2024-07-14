@@ -14,7 +14,7 @@ def generate_launch_description():
     image_input_topic = LaunchConfiguration('image_input_topic')
     declare_image_input_topic_cmd = DeclareLaunchArgument(
         'image_input_topic',
-        default_value='/camera/depth/image_raw',
+        default_value='/camera/image_raw',
         description='Set the image input topic'
     )
 

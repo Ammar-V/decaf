@@ -139,3 +139,15 @@ ros2 run cv detect_object --ros-args -r /image_in:=/camera/image_raw
 ```
 ros2 run cv follow_object --ros-args --params-file ./src/decaf/cv/config/cv_params.yaml 
 ```
+
+## Lane Detection Commands
+
+### Launch lane detection
+```
+ros2 launch cv lane_detection.launch.py
+```
+
+### Launch conversion from PointCloud2 to LaserScan for lanes
+```
+ros2 launch pointcloud_to_laserscan sample_pointcloud_to_laserscan_launch.py 
+```

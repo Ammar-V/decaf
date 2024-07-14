@@ -15,7 +15,7 @@ def generate_launch_description():
             remappings=[('cloud_in', 'projected_lanes'),
                         ('scan', '/lanes_scan')],
             parameters=[{
-                'target_frame': 'base_link',
+                'target_frame': 'laser_frame',
                 'transform_tolerance': 0.01,
                 'min_height': -1.0,
                 'max_height': 10.0,

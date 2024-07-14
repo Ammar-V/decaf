@@ -63,6 +63,16 @@ def generate_launch_description():
         arguments=["joint_broad"],
     )
 
+    # Start robot localization using an Extended Kalman filter
+    robot_localization_file_path = os.path.join(get_package_share_directory(package_name), 'config', 'ekf.yaml')
+    start_robot_localization_cmd = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[robot_localization_file_path, 
+        {'use_sim_time': True}])
+
 
     # Launch them all
     return LaunchDescription([
@@ -77,4 +87,5 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
+        start_robot_localization_cmd
     ])

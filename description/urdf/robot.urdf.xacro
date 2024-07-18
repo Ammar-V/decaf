@@ -13,11 +13,10 @@
         <xacro:include filename="gazebo_control.xacro" />
     </xacro:unless>
 
+    <!-- Sensors -->
     <xacro:include filename="lidar.xacro" />
-
-    <!-- <xacro:include filename="camera.xacro" /> -->
-
-    <xacro:include filename="depth_camera.xacro" />
-
     <xacro:include filename="imu.xacro" />
+    <xacro:include filename="gps.xacro" />
+    <xacro:include filename="depth_camera.xacro" />
+    <!-- <xacro:include filename="camera.xacro" /> -->
 </robot>

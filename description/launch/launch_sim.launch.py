@@ -87,5 +87,5 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
-        # start_robot_localization_cmd
+        start_robot_localization_cmd
     ])

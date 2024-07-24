@@ -157,3 +157,8 @@ ros2 launch pointcloud_to_laserscan sample_pointcloud_to_laserscan_launch.py
 ```
 ros2 run scan_fusion fuse_scans
 ```
+
+## Lane Detection + PC to Laser + Lane/LiDAR Fusion
+```
+ros2 launch scan_fusion fused_sensor.launch.py
+```

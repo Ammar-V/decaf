@@ -65,13 +65,35 @@ def generate_launch_description():
 
     # Start robot localization using an Extended Kalman filter
     robot_localization_file_path = os.path.join(get_package_share_directory(package_name), 'config', 'ekf.yaml')
-    start_robot_localization_cmd = Node(
+    start_local_odom_ekf = Node(
         package='robot_localization',
         executable='ekf_node',
         name='ekf_filter_node',
         output='screen',
-        parameters=[robot_localization_file_path, 
-        {'use_sim_time': True}])
+        parameters=[robot_localization_file_path, {'use_sim_time': True}],
+        remappings=[("odometry/filtered", "odometry/local")])
+
+    start_global_odom_ekf = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node_map',
+        output='screen',
+        parameters=[robot_localization_file_path, {'use_sim_time': True}],
+        remappings=[("odometry/filtered", "odometry/global")])
+    
+    start_navsat = Node(
+        package="robot_localization",
+        executable="navsat_transform_node",
+        name="navsat_transform",
+        output="screen",
+        parameters=[robot_localization_file_path, {"use_sim_time": True}],
+        remappings=[
+            ("imu/data", "imu/data"), # sub
+            ("gps/fix", "gps/fix"), # sub
+            ("gps/filtered", "gps/filtered"), # pub
+            ("odometry/gps", "odometry/gps"), # pub
+            ("odometry/filtered", "odometry/global"), # sub
+        ])
 
 
     # Launch them all
@@ -87,5 +109,9 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
-        start_robot_localization_cmd
+
+
+        start_local_odom_ekf,
+        start_global_odom_ekf,
+        start_navsat,
     ])

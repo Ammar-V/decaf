@@ -383,6 +383,7 @@ navsat_transform:
     publish_filtered_gps: true
     use_odometry_yaw: true
     wait_for_datum: true
-    datum: [37.7749, -122.4194, 15.0]
+#     datum: [37.7749, -122.4194, 15.0] # Obstacles map
+    datum: [37.7747, -122.4190, 15.0] # igvc map
 
 

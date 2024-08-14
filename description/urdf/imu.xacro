@@ -21,7 +21,7 @@
                 <namespace>/imu</namespace>
                 <remapping>~/out:=data</remapping>
             </ros>
-            <update_rate>10.0</update_rate>
+            <update_rate>30.0</update_rate>
             <gaussian_noise>0.0</gaussian_noise>
             <body_name>imu_link</body_name>
             <frame_name>imu_link</frame_name>

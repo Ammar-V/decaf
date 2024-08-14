@@ -12,7 +12,7 @@
     <gazebo reference="gps_link">
         <sensor name="gps_sensor" type="gps">
         <always_on>true</always_on>
-        <update_rate>10.0</update_rate>
+        <update_rate>100.0</update_rate>
         <gps>
             <position_sensing>
             <horizontal>
@@ -30,6 +30,7 @@
             </position_sensing>
         </gps>
         <plugin filename="libgazebo_ros_gps_sensor.so" name="gps_plugin">
+            <update_rate>100</update_rate>
             <ros>
                 <namespace>/gps</namespace>
                 <remapping>~/out:=fix</remapping>

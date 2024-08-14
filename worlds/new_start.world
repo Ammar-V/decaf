@@ -39,7 +39,7 @@
       <surface_model>EARTH_WGS84</surface_model>
       <latitude_deg>37.7749</latitude_deg>
       <longitude_deg>-122.419</longitude_deg>
-      <elevation>15</elevation>
+      <elevation>0.0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <model name='my_ground_plane'>
@@ -2417,7 +2417,7 @@
         </sensor>
         <sensor name='gps_sensor' type='gps'>
           <always_on>1</always_on>
-          <update_rate>10</update_rate>
+          <update_rate>100</update_rate>
           <gps>
             <position_sensing>
               <horizontal>
@@ -2455,7 +2455,7 @@
               <namespace>/imu</namespace>
               <remapping>~/out:=data</remapping>
             </ros>
-            <update_rate>10.0</update_rate>
+            <update_rate>100.0</update_rate>
             <gaussian_noise>0.0</gaussian_noise>
             <body_name>imu_link</body_name>
             <frame_name>imu_link</frame_name>

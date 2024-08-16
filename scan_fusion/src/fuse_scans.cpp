@@ -6,7 +6,7 @@
 #include "sensor_msgs/msg/laser_scan.hpp"
 using std::placeholders::_1;
 
-#define MAX_BUFFER_SIZE 10
+#define MAX_BUFFER_SIZE 50
 
 class FuseScans : public rclcpp::Node
 {
@@ -37,12 +37,13 @@ class FuseScans : public rclcpp::Node
 
         // Perform fusion on the lidar messgae
         this->perform_fusion(msg->ranges, lane_msg->ranges, msg->ranges);
+        auto fused_msg = *msg;  
+        fused_scan_pub_->publish(fused_msg);
       } else {
         // RCLCPP_INFO(this->get_logger(), "Can't Consumed a lane msg because empty");
+        fused_scan_pub_->publish(*msg);
       }
 
-      auto fused_msg = *msg;  
-      fused_scan_pub_->publish(fused_msg);
     }
 
     void lane_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {

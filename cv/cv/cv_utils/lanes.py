@@ -11,6 +11,7 @@ def project_lanes(mask, depth, camera_info):
     '''
 
     lanes_locs = np.argwhere(mask > 0).astype(tuple)
+    if len(lanes_locs) == 0: return lanes_locs, False
 
     # Transpose is needed to make the next line work
     lanes_locs_idxs = np.array(lanes_locs).T.tolist() # [[list of all y coordinates] [list of all x coordinates]]
@@ -30,7 +31,7 @@ def project_lanes(mask, depth, camera_info):
     lanes_pc[:, 0] = (lanes_pc[:, 0] - camera_info['cx']) * lanes_pc[:, 2] / camera_info['fx'] # (x - cx) * z / fx
     lanes_pc[:, 1] = (lanes_pc[:, 1] - camera_info['cy']) * lanes_pc[:, 2] / camera_info['fy'] # (y - cy) * z / fy
     
-    return lanes_pc
+    return lanes_pc, True
 
 
 def find_barrels(img):

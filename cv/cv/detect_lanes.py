@@ -63,7 +63,9 @@ class DetectLanes(Node):
 
             # If depth map is available, project lanes
             if self.depth_map is not None and self.camera_info is not None:
-                lanes_pc = project_lanes(out_img, self.depth_map, self.camera_info).tolist()
+                lanes_pc, valid = project_lanes(out_img, self.depth_map, self.camera_info)
+                if not valid: return
+                lanes_pc = lanes_pc.tolist()
 
                 # Create the point cloud fields
                 fields = [

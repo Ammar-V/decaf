@@ -162,3 +162,24 @@ ros2 run scan_fusion fuse_scans
 ```
 ros2 launch scan_fusion fused_sensor.launch.py
 ```
+
+## Waypoint Navigation commands
+
+### GPS Waypoint Follower node
+```
+ros2 run navigation waypoint_follower
+```
+
+
+## Notes
+
+### Setting up waypoint follower
+
+Things that are required:
+1. Create a yaml file of lat, lon, alt values
+2. Using the /fromLL service provided by robot_localization, convert the lat, lon, alt (GeoPose) into UTM (Point) object. Then, use this Point object + quarternion to create a PoseStamped object.
+```
+ros2 service call /fromLL robot_localization/srv/FromLL "{ll_point: {latitude: 10, longitude: 89, altitude: 90}}"
+```
+3. Create a list of the various PoseStamped waypoints
+4. Pass this list into the `followWaypoints` method of `BasicNavigator` from a new node

@@ -2469,7 +2469,7 @@
         <kinematic>0</kinematic>
       </link>
       <joint name='left_wheel_joint' type='revolute'>
-        <pose relative_to='base_link'>0 0.35 0 -1.5708 0 0</pose>
+        <pose relative_to='base_link'>0 0.405 0 -1.5708 0 0</pose>
         <parent>base_link</parent>
         <child>left_wheel</child>
         <axis>
@@ -2539,7 +2539,7 @@
         <kinematic>0</kinematic>
       </link>
       <joint name='right_wheel_joint' type='revolute'>
-        <pose relative_to='base_link'>0 -0.35 0 1.5708 -0 0</pose>
+        <pose relative_to='base_link'>0 -0.405 0 1.5708 -0 0</pose>
         <parent>base_link</parent>
         <child>right_wheel</child>
         <axis>

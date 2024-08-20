@@ -63,6 +63,14 @@ def generate_launch_description():
         arguments=["joint_broad"],
     )
 
+    # Start the sensor fusion
+    sensor_fusion_package_name = "scan_fusion"
+    sensor_fusion = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory(sensor_fusion_package_name), 'launch', 'fused_sensor.launch.py'
+        )])
+    )
+
     # Start robot localization using an Extended Kalman filter
     robot_localization_file_path = os.path.join(get_package_share_directory(package_name), 'config', 'ekf.yaml')
     start_local_odom_ekf = Node(
@@ -109,7 +117,7 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
-
+        sensor_fusion,
 
         start_local_odom_ekf,
         start_global_odom_ekf,

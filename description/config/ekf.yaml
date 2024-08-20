@@ -344,16 +344,17 @@ ekf_filter_node_map:
     imu0_queue_size: 10
     imu0_remove_gravitational_acceleration: true
 
-#     # SLAM Toolbox Pose
-#     pose0: /pose
-#     pose0_config: [true,  true,  false,  # x, y positions (z is false because 2D)
-#                    false, false, true,   # yaw orientation (roll, pitch are false in 2D)
-#                    false, false, false,  # velocities (not available in Pose message)
-#                    false, false, false,
-#                    false, false, false]
-#     pose0_queue_size: 10
-#     pose0_relative: false
-#     pose0_differential: false
+    # SLAM Toolbox Pose
+    pose0: /pose
+    pose0_config: [true,  true,  false,  # x, y positions (z is false because 2D)
+                   false, false, true,   # yaw orientation (roll, pitch are false in 2D)
+                   false, false, false,  # velocities (not available in Pose message)
+                   false, false, false,
+                   false, false, false]
+    pose0_nodelay: true
+    pose0_queue_size: 10
+    pose0_relative: true
+    pose0_differential: false
 
     odom1: odometry/gps
     odom1_config: [true,  true,  false,
@@ -394,7 +395,7 @@ navsat_transform:
     publish_filtered_gps: true
     use_odometry_yaw: true
     wait_for_datum: true
-    datum: [37.7749, -122.4194, 0.0] # Obstacles map
-#     datum: [37.7747, -122.4190, 0.0] # igvc map
+#     datum: [37.7749, -122.4194, 0.0] # Obstacles map
+    datum: [37.7747, -122.4190, 0.0] # igvc map
 
 

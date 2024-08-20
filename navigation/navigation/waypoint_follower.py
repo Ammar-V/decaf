@@ -63,9 +63,6 @@ class DecafWPF(Node):
         for gps_wp in self.gps_wps:
             point = request_ll_to_point(gps_wp["lat"], gps_wp["lon"], gps_wp["alt"])
 
-            point.x = point.x * -1
-            point.y = point.y * -1
-
             print(point)
             quaternion = quaternion_from_euler(0, 0, gps_wp["yaw"])
    

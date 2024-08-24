@@ -2363,13 +2363,13 @@
         </visual>
         <sensor name='camera' type='depth'>
           <visualize>1</visualize>
-          <update_rate>10</update_rate>
+          <update_rate>100.0</update_rate>
           <camera>
             <horizontal_fov>1.089</horizontal_fov>
             <image>
               <format>B8G8R8</format>
-              <width>640</width>
-              <height>480</height>
+              <width>320</width>
+              <height>240</height>
             </image>
             <clip>
               <near>0.05</near>
@@ -2380,6 +2380,8 @@
             <frame_name>camera_link_optical</frame_name>
             <min_depth>0.1</min_depth>
             <max_depth>100</max_depth>
+            <update_rate>100.0</update_rate>
+            <always_on>true</always_on>
           </plugin>
           <pose>0.05 0 0.6 0 0.36 0</pose>
         </sensor>
@@ -2460,6 +2462,15 @@
             <body_name>imu_link</body_name>
             <frame_name>imu_link</frame_name>
             <initial_orientation_as_reference>1</initial_orientation_as_reference>
+
+            <!-- Covariance for Orientation -->
+            <rpy_offset_covariance>0.01 0.01 0.01</rpy_offset_covariance>
+            
+            <!-- Covariance for Angular Velocity -->
+            <angular_velocity_covariance>0.01 0.01 0.01</angular_velocity_covariance>
+            
+            <!-- Covariance for Linear Acceleration -->
+            <linear_acceleration_covariance>0.1 0.1 0.1</linear_acceleration_covariance>
           </plugin>
           <pose>0 0 0 0 -0 0</pose>
           <imu/>

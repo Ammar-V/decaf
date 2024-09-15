@@ -2363,7 +2363,7 @@
         </visual>
         <sensor name='camera' type='depth'>
           <visualize>1</visualize>
-          <update_rate>100.0</update_rate>
+          <update_rate>15.0</update_rate>
           <camera>
             <horizontal_fov>1.089</horizontal_fov>
             <image>

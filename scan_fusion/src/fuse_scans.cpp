@@ -6,7 +6,8 @@
 #include "sensor_msgs/msg/laser_scan.hpp"
 using std::placeholders::_1;
 
-#define MAX_BUFFER_SIZE 50
+#define MAX_BUFFER_SIZE 1
+// Put a limit on angular velocity so lag doesn't affect as much
 
 class FuseScans : public rclcpp::Node
 {

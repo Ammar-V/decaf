@@ -392,11 +392,12 @@ navsat_transform:
     magnetic_declination_radians: 0.0
     yaw_offset: 1.5707963
     zero_altitude: true
-    broadcast_utm_transform: true
+    broadcast_cartesian_transform: true
     publish_filtered_gps: true
     use_odometry_yaw: true
     wait_for_datum: true
 #     datum: [37.7749, -122.4194, 0.0] # Obstacles map
-    datum: [37.7747, -122.4190, 0.0] # igvc map
+#     datum: [37.7747, -122.4190, 0.0] # igvc map
+    datum: [37.7747112615, -122.419181855, 0.0] # igvc map forward
 
 

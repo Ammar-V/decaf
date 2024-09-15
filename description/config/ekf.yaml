@@ -330,7 +330,7 @@ ekf_filter_node_map:
                   false, false, false]
     odom0_queue_size: 10
     odom0_nodelay: true
-    odom0_differential: false
+    odom0_differential: true
     odom0_relative: false
 
 
@@ -346,16 +346,16 @@ ekf_filter_node_map:
     imu0_remove_gravitational_acceleration: true
 
     # SLAM Toolbox Pose
-#     pose0: /pose
-#     pose0_config: [true,  true,  false,  # x, y positions (z is false because 2D)
-#                    false, false, true,   # yaw orientation (roll, pitch are false in 2D)
-#                    false, false, false,  # velocities (not available in Pose message)
-#                    false, false, false,
-#                    false, false, false]
-#     pose0_nodelay: true
-#     pose0_queue_size: 10
-#     pose0_relative: true
-#     pose0_differential: false
+    pose0: pose
+    pose0_config: [true,  true,  false,  # x, y positions (z is false because 2D)
+                   false, false, true,   # yaw orientation (roll, pitch are false in 2D)
+                   false, false, false,  # velocities (not available in Pose message)
+                   false, false, false,
+                   false, false, false]
+    pose0_nodelay: true
+    pose0_queue_size: 10
+    pose0_relative: false
+    pose0_differential: false
 
     odom1: odometry/gps
     odom1_config: [true,  true,  false,

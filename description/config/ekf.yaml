@@ -278,13 +278,14 @@ ekf_filter_node:
     odom0_differential: false
     odom0_relative: false
 
+# something about nav2 causes local odom to go haywire after turning. need to find fix
 
     imu0: imu/data
     imu0_config: [false, false, false,
                 false,  false,  true,
                 false,   false,   false,
                 false,  false,  true,
-                true,   false,   false]
+                false,   false,   false]
     imu0_differential: true  # If using a real robot you might want to set this to true, since usually absolute measurements from real imu's are not very accurate
     imu0_relative: false
     imu0_queue_size: 10
@@ -292,18 +293,18 @@ ekf_filter_node:
 
     use_control: false
 
-    process_noise_covariance: [1e-3, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                              0.0,    1e-3,  0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+    process_noise_covariance: [1.0, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                              0.0,    1.0,  0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    1e-3,  0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.3,   0.0,    0.0,     0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.3,   0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                              0.0,    0.0,    0.0,    0.0,    0.0,    0.01,  0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                              0.0,    0.0,    0.0,    0.0,    0.0,    2.0,  0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.5,    0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.5,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.1,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.3,   0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.3,   0.0,    0.0,    0.0,    0.0,
-                              0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.3,   0.0,    0.0,    0.0,
+                              0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    2.0,   0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.3,   0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.3,   0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.3]
@@ -323,38 +324,38 @@ ekf_filter_node_map:
 
     odom0: diff_cont/odom
     odom0_config: [true, true, false,
-                  false, false, false, # alternative: turn on yaw
+                  false, false, true,
                   true,  true,  false,
                   false, false, false,
                   false, false, false]
     odom0_queue_size: 10
     odom0_nodelay: true
-    odom0_differential: true
+    odom0_differential: false
     odom0_relative: false
 
 
     imu0: imu/data
     imu0_config: [false, false, false,
-                false,  false,  true, # alternative: turn off yaw
-                true,   true,   false,
                 false,  false,  true,
-                true,   false,   false]
+                false,   false,   false,
+                false,  false,  true,
+                false,   false,   false]
     imu0_differential: false  # If using a real robot you might want to set this to true, since usually absolute measurements from real imu's are not very accurate
     imu0_relative: true
     imu0_queue_size: 10
     imu0_remove_gravitational_acceleration: true
 
     # SLAM Toolbox Pose
-    pose0: /pose
-    pose0_config: [true,  true,  false,  # x, y positions (z is false because 2D)
-                   false, false, true,   # yaw orientation (roll, pitch are false in 2D)
-                   false, false, false,  # velocities (not available in Pose message)
-                   false, false, false,
-                   false, false, false]
-    pose0_nodelay: true
-    pose0_queue_size: 10
-    pose0_relative: true
-    pose0_differential: false
+#     pose0: /pose
+#     pose0_config: [true,  true,  false,  # x, y positions (z is false because 2D)
+#                    false, false, true,   # yaw orientation (roll, pitch are false in 2D)
+#                    false, false, false,  # velocities (not available in Pose message)
+#                    false, false, false,
+#                    false, false, false]
+#     pose0_nodelay: true
+#     pose0_queue_size: 10
+#     pose0_relative: true
+#     pose0_differential: false
 
     odom1: odometry/gps
     odom1_config: [true,  true,  false,
@@ -364,16 +365,16 @@ ekf_filter_node_map:
                   false, false, false]
     odom1_queue_size: 10
     odom1_differential: true
-    odom1_relative: true
+    odom1_relative: false
 
     use_control: false
 
-    process_noise_covariance: [1.0,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                              0.0,    1.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+    process_noise_covariance: [2.0,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                              0.0,    2.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    1e-3,   0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.3,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.3,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                              0.0,    0.0,    0.0,    0.0,    0.0,    0.01,   0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                              0.0,    0.0,    0.0,    0.0,    0.0,    0.9,   0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.5,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.5,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.1,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
@@ -389,13 +390,13 @@ navsat_transform:
     frequency: 30.0
     delay: 3.0
     magnetic_declination_radians: 0.0
-    yaw_offset: 3.14159265359
+    yaw_offset: 1.5707963
     zero_altitude: true
     broadcast_utm_transform: true
     publish_filtered_gps: true
     use_odometry_yaw: true
     wait_for_datum: true
-#     datum: [37.7749, -122.4194, 0.0] # Obstacles map
-    datum: [37.7747, -122.4190, 0.0] # igvc map
+    datum: [37.7749, -122.4194, 0.0] # Obstacles map
+#     datum: [37.7747, -122.4190, 0.0] # igvc map
 
 

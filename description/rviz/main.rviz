@@ -5,11 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Status1
-        - /TF1
-        - /RobotModel1
         - /Map1/Update Topic1
-        - /Map2
         - /LaserScan2/Topic1
       Splitter Ratio: 0.5
     Tree Height: 337
@@ -249,9 +245,13 @@ Visualization Manager:
         Value: /camera/image_raw
       Value: true
       Visibility:
+        Global Costmap: true
+        Global Plan: true
         Grid: true
         Image: true
         LaserScan: true
+        Local Costmap: true
+        Local Plan: true
         Map: true
         Path: true
         PointCloud2: true
@@ -285,7 +285,7 @@ Visualization Manager:
       Color Scheme: costmap
       Draw Behind: false
       Enabled: true
-      Name: Map
+      Name: Global Costmap
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -306,7 +306,7 @@ Visualization Manager:
       Color Scheme: costmap
       Draw Behind: false
       Enabled: true
-      Name: Map
+      Name: Local Costmap
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -349,6 +349,62 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /plan
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 0; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Global Plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /received_global_plan
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 170; 0; 255
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Local Plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_plan
       Value: true
     - Class: rviz_default_plugins/Image
       Enabled: true
@@ -477,26 +533,21 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Class: rviz_default_plugins/Orbit
-      Distance: 7.163784980773926
+      Angle: -1.6049996614456177
+      Class: rviz_default_plugins/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
-      Focal Point:
-        X: 12.492486000061035
-        Y: -1.7954046726226807
-        Z: 15.348114013671875
-      Focal Shape Fixed Size: true
-      Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5697963237762451
+      Scale: 37.63337707519531
       Target Frame: <Fixed Frame>
-      Value: Orbit (rviz)
-      Yaw: 2.6385791301727295
+      Value: TopDownOrtho (rviz_default_plugins)
+      X: 1.4455044269561768
+      Y: -1.005821943283081
     Saved: ~
 Window Geometry:
   Camera:
@@ -518,5 +569,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1109
-  X: 481
-  Y: -32
+  X: 17
+  Y: -36

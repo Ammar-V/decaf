@@ -352,7 +352,7 @@ ekf_filter_node_map:
                    false, false, false,  # velocities (not available in Pose message)
                    false, false, false,
                    false, false, false]
-    pose0_nodelay: true
+    pose0_nodelay: false
     pose0_queue_size: 10
     pose0_relative: false
     pose0_differential: false

@@ -29,13 +29,13 @@
         <sensor name="camera" type="depth">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
-            <update_rate>10</update_rate>
+            <update_rate>15.0</update_rate>
             <camera>
                 <horizontal_fov>1.089</horizontal_fov>
                 <image>
                     <format>B8G8R8</format>
-                    <width>640</width>
-                    <height>480</height>
+                    <width>320</width>
+                    <height>240</height>
                 </image>
                 <clip>
                     <near>0.05</near>
@@ -46,6 +46,8 @@
                 <frame_name>camera_link_optical</frame_name>
                 <min_depth>0.1</min_depth>
                 <max_depth>100</max_depth>
+                <update_rate>0.0</update_rate>
+                <always_on>true</always_on>
             </plugin>
         </sensor>
     </gazebo>

@@ -26,10 +26,9 @@ As such, I wrote a simple algorithm to overcome this as follows:
 
 
 ## State estimation
+Take a second to pause and think about how you navigate an environment. Let's say you are in a new city, and you want to walk to the closest coffee shop. You ask a passerby for directions, and they tell you that you are not far - all you have to do, is go straight for 500 m, turn right, and then walk another 100 m. You thank them, and start walking. After 2 minutes of walking, you soon realize that you have no idea when you were supposed to turn right. You know that you were supposed to walk 500 m before turning right, but you have no notion of how far you have walked in the last couple minutes!
+
 State estimation is crucial when it comes to robotics. Simply put, state estimation is the process of using sensor inputs to estimate the position and orientation of a robot in space. For a mobile robot, this is highly important so that the it can navigate from point A to B. 
-
-Take a second to pause and think about how you navigate an environment. For example, if you want to go from your bedroom to your kitchen, you need to know how many steps you need to take (distance) in a certain direction (orientation). To do this, you need to know where the kitchen is relative to the bedroom. On top of that, you need even more fundamental information - knowing that you are in your bedroom and not already in the kitchen!
-
 
 ![A diagram of different sensors such as wheel encoders, IMU, and GPS.]()
 
@@ -40,9 +39,10 @@ However, in the real world, things are not as nice as they seem - sensors are hi
 ### Extended Kalman Filter
 
 ## SLAM
-Simultaneous Localization and Mapping (SLAM) is a widely used technique used two solve two problems in robotics: mapping and localization (!). For this project, I heavily relied on the slam_toolbox, which takes in a LaserScan topic as input to map the environment, and localize within in. But why is SLAM needed in the first place?
+Let's go back to the example of navigating. Here's the scene: you are at the museum on a tour, when suddenly you need to go to the bathroom. Since the bathroom is in another wing of the building, the tour guide is kind enough to walk you there. On the way there you see many cool and interesting things - a greek statue, a dinosaur fossil, and an early piece of art. You arrive at the bathroom and go inside. After a couple minutes, you come outside, only to find to your surprise that the tour guide had already left! You think to yourself that the tour guide probably had to attend to an emergency, and you start walking back towards where you came from.
 
-Let's go back to the example of navigating your home. 
+Simultaneous Localization and Mapping (SLAM) is a widely used technique used two solve two problems in robotics: mapping and localization (!).
+
 
 ## Nav2
 
